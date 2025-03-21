@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Castile Money - Penghasil Saldo</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src='//whephiwums.com/sdk.js' data-zone='9110246' data-sdk='show_9110246'></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 16px;
+            color: var(--tg-theme-text-color, #000);
+            background: var(--tg-theme-bg-color, #fff);
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .description {
+            margin-bottom: 20px;
+            color: var(--tg-theme-hint-color, #999);
+        }
+        .button {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .info-box {
+            background-color: var(--tg-theme-secondary-bg-color, #f1f1f1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--tg-theme-button-color, #2481cc);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💰 Castile Money</div>
+            <div class="description">Tonton iklan dan dapatkan saldo!</div>
+        </div>
+
+        <div class="info-box">
+            <p>Tonton iklan 15 detik dan dapatkan Rp100-500 per iklan</p>
+            <p>Minimal penarikan: Rp5.000</p>
+        </div>
+
+        <button id="watch-ad-button" class="button">Tonton Iklan</button>
+        
+        <div id="loading" class="loading">
+            <div class="loading-spinner"></div>
+            <p>Memuat iklan...</p>
+        </div>
+        
+        <div id="reward-info" style="display: none;">
+            <p>✅ Iklan berhasil ditonton!</p>
+            <p>Saldo akan ditambahkan ke akun Anda.</p>
+        </div>
+    </div>
+
+    <script>
+        // Inisialisasi Telegram WebApp
+        const webapp = window.Telegram.WebApp;
+        webapp.expand();
+        
+        // Tombol tonton iklan
+        const watchAdButton = document.getElementById('watch-ad-button');
+        const loadingElement = document.getElementById('loading');
+        const rewardInfo = document.getElementById('reward-info');
+        
+        // Fungsi untuk menampilkan iklan Monetag
+        function showAd() {
+            watchAdButton.disabled = true;
+            loadingElement.style.display = 'block';
+            
+            // Tampilkan iklan Monetag
+            show_9110246().then(() => {
+                // Iklan berhasil ditonton
+                loadingElement.style.display = 'none';
+                rewardInfo.style.display = 'block';
+                
+                // Kirim data ke bot bahwa pengguna telah menonton iklan
+                webapp.sendData(JSON.stringify({
+                    action: 'watched_ad',
+                    timestamp: Date.now()
+                }));
+                
+                // Aktifkan kembali tombol setelah beberapa detik
+                setTimeout(() => {
+                    watchAdButton.disabled = false;
+                    rewardInfo.style.display = 'none';
+                }, 3000);
+            }).catch(error => {
+                // Jika terjadi error saat menampilkan iklan
+                console.error("Error showing ad:", error);
+                loadingElement.style.display = 'none';
+                watchAdButton.disabled = false;
+                alert("Gagal menampilkan iklan. Silakan coba lagi.");
+            });
+        }
+        
+        // Event listener untuk tombol tonton iklan
+        watchAdButton.addEventListener('click', showAd);
+        
+        // Tampilkan MainButton Telegram jika tersedia
+        if (webapp.MainButton) {
+            webapp.MainButton.setText('Kembali ke Bot').show().onClick(function() {
+                webapp.close();
+            });
+        }
+    </script>
+</body>
+</html>
