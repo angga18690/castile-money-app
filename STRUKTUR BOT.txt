@@ -1,4 +1,4 @@
-Struktur File yang Lebih Baik
+1.Struktur File yang Lebih Baik
 Berikut struktur file yang direkomendasikan:
 
 castile_money_bot/
@@ -15,3 +15,13 @@ castile_money_bot/
 │   └── helpers.py      # Fungsi pembantu
 ├── main.py             # File utama untuk menjalankan bot
 └── requirements.txt    # Dependensi
+
+2.Struktur File yang Lebih Baik
+Berikut struktur file yang direkomendasikan:
+
+project-folder/
+├── CM_BOT4.py          # Script utama bot
+├── db.py               # Script helper untuk database
+├── .env                # Variabel lingkungan
+├── castile_money.db    # File database SQLite (akan dibuat otomatis)
+├── requirements.txt    # (Opsional) Daftar pustaka Python yang dibutuhkan
