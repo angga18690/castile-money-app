@@ -17,14 +17,14 @@ logger = logging.getLogger(__name__)
 # Load variabel lingkungan (jika menggunakan .env)
 try:
     load_dotenv()
-    BOT_TOKEN = os.getenv("BOT_TOKEN", "7914096938:AAGizfG8bgLyr2Vxq_ks-bvBf0N7pH2XL2k")
-    MONETAG_URL = os.getenv("MONETAG_URL", "https://monetag-miniapp-url.com")
-    ADMIN_IDS = [int(id) for id in os.getenv("ADMIN_IDS", "1838932383").split(",") if id]
+    BOT_TOKEN = os.getenv("BOT_TOKEN", "BOT_TOKEN=your_bot_token_here")
+    MONETAG_URL = os.getenv("MONETAG_URL", "MONETAG_URL=your_monetag_url_here")
+    ADMIN_IDS = [int(id) for id in os.getenv("ADMIN_IDS", "admin_ids=your_admin_id_here").split(",") if id]
 except:
     # Fallback jika dotenv tidak tersedia
-    BOT_TOKEN = "7914096938:AAGizfG8bgLyr2Vxq_ks-bvBf0N7pH2XL2k"
-    MONETAG_URL = "https://monetag-miniapp-url.com"
-    ADMIN_IDS = [1838932383]  # ID admin Anda
+    BOT_TOKEN = "BOT_TOKEN", "BOT_TOKEN=your_bot_token_here"
+    MONETAG_URL = "MONETAG_URL=your_monetag_url_here"
+    ADMIN_IDS = ["admin_ids=your_admin_id_here"]  # ID admin Anda
 
 # Inisialisasi database
 def init_db():
