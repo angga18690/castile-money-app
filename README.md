@@ -14,7 +14,7 @@ Mini App Telegram untuk Castile Money Bot - Bot penghasil saldo DANA dengan meno
 1. Buka Castile Money Bot di Telegram: [@CastileMoney_Bot](https://t.me/CastileMoney_Bot)
 2. Klik tombol "Mulai Menghasilkan Sekarang"
 3. Tonton iklan selama 15 detik
-4. Dapatkan reward Rp100-500 per iklan
+4. Dapatkan reward Rp5 per iklan
 5. Kumpulkan minimal Rp5.000 untuk penarikan ke DANA
 
 ## Teknologi
