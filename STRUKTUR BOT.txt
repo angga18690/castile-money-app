@@ -1,0 +1,17 @@
+Struktur File yang Lebih Baik
+Berikut struktur file yang direkomendasikan:
+
+castile_money_bot/
+├── config.py           # Konfigurasi bot (token, URL, dll)
+├── database.py         # Fungsi database
+├── handlers/
+│   ├── __init__.py
+│   ├── start.py        # Handler untuk perintah start
+│   ├── balance.py      # Handler untuk cek saldo
+│   ├── withdraw.py     # Handler untuk penarikan
+│   └── referral.py     # Handler untuk referral
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py      # Fungsi pembantu
+├── main.py             # File utama untuk menjalankan bot
+└── requirements.txt    # Dependensi
